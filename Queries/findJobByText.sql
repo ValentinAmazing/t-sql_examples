@@ -7,4 +7,4 @@ select jo.*, ob.*
 from msdb.dbo.sysjobsteps ob(nolock)
 	join msdb.dbo.sysjobs jo(nolock)
 			on jo.job_id = ob.job_id
-where ob.command like '%'+ @findText +'%'
+where PATINDEX('%'+ @findText +'%', ob.command) > 1
